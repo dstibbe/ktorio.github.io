@@ -67,6 +67,18 @@ val client = HttpClient(HttpClientEngine) {
 To use this feature, you need to include `io.ktor:ktor-client-jackson` artifact.
 {: .note.artifact }
 
+#### Receiving/Sending XML with the Jackson module
+
+```kotlin
+val client = HttpClient(HttpClientEngine) {
+    install(JsonFeature) {
+        serializer = JacksonSerializer(jackson = XmlMapper().registerModule(KotlinModule()))
+        accept(ContentType.Application.Xml)
+    }
+}
+```
+
+
 ### Kotlinx.Serialization
 
 {: #kotlinx-serialization }
